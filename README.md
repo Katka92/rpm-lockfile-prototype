@@ -271,6 +271,17 @@ configuration.
 However, it is not safe to use the cache by two processes running at the same
 time.
 
+# Test coverage (Codecov)
+
+CI uploads Python coverage from Fedora 43 builds to [Codecov](https://codecov.io)
+(flag `unit-tests`). To reproduce locally (in a venv with system-site-packages, as above):
+
+```bash
+pip install pytest pytest-cov
+pytest -v --cov=rpm_lockfile --cov-report=xml:coverage.xml
+```
+
+Use **`pip install -e .`** in your checkout when generating coverage; a plain **`pip install .`** puts the package in `site-packages`, so pytest runs that copy while the report points at `./rpm_lockfile` and you get **0%** (no line hits).
 
 # What does this do
 
